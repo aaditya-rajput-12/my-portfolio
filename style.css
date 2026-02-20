@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+}
+
+.hero {
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.hero h2 {
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+section {
+    background: white;
+    color: #222;
+    margin: 30px auto;
+    padding: 30px;
+    width: 80%;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+section:hover {
+    transform: scale(1.03);
+}
+
+.skill-box p {
+    margin: 10px 0;
+}
+
+footer {
+    padding: 15px;
+    background: #111;
+    margin-top: 40px;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
