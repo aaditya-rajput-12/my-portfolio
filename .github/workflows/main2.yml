@@ -19,9 +19,9 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             docker stop ec2-cicd || true
-            docker rm -f ec2-cicd || true
+            docker rm ec2-cicd || true
             docker pull ${{ secrets.DOCKER_USERNAME }}/aaditya-portfolio:latest
             docker run -d \
               --name ec2-cicd \
-              -p 80:80 \
+              -p 8080:80 \
               ${{ secrets.DOCKER_USERNAME }}/aaditya-portfolio:latest
