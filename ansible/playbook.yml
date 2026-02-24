@@ -1,0 +1,47 @@
+---
+- name: Install Docker on EC2
+  hosts: webservers
+  become: true
+
+  tasks:
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Install Docker Python module
+      apt:
+        name: python3-docker
+        state: present
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Add user to docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Pull portfolio-server image
+      docker_image:
+        name: aadidock1/aaditya-portfolio
+        tag: latest
+        source: pull
+
+    - name: Run portfolio-server container
+      docker_container:
+        name: portfolio-server
+        image: aadidock1/aaditya-portfolio:latest
+        state: started
+        restart_policy: always
+        ports:
+          - "80:80"
